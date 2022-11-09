@@ -13,3 +13,38 @@ h1{
 button{
     margin:0 20px 0 20px;
 }
+.winner{
+
+    margin: 0px auto;
+    border: 1px solid black;
+    width: 100px;
+    height: 50px;
+}
+.wins{
+    /* border:1px solid black; */
+    /* width:50px; */
+    margin-top: 16px;
+    text-align: center;
+}
+.player{
+    margin-top: -19px;
+    margin-left: -25px;
+    width:fit-content;
+    background-color: black;
+    color: aliceblue;
+}
+.computer{
+    margin-top: -19px;
+    margin-left: 80px;
+    width:fit-content;
+    background-color: black;
+    color: aliceblue;
+}
+.w1{
+    text-align: center;
+    margin-top: -10px;
+}
+.count{
+    text-align: center;
+    margin-top:50px;
+}
