@@ -1,6 +1,7 @@
 *{
     margin:0;
     padding:0;
+    
 }
 h1{
     text-align: center;
@@ -27,7 +28,7 @@ button{
     text-align: center;
 }
 .player{
-    margin-top: -19px;
+    margin-top: -18px;
     margin-left: -25px;
     width:fit-content;
     background-color: black;
@@ -40,11 +41,18 @@ button{
     background-color: black;
     color: aliceblue;
 }
-.w1{
-    text-align: center;
-    margin-top: -10px;
-}
 .count{
     text-align: center;
     margin-top:50px;
+}
+.player_win{
+    
+    margin-top: -18px;
+    margin-left: 37px;
+    width: fit-content;
+}
+.comp_win{
+    margin-top: -18px;
+    margin-left: 55px;
+    width: fit-content;
 }
