@@ -18,9 +18,10 @@ playeroption.forEach(option => {
         key2 = "Computer Win";
 
         if(playeroption === computerchoice){
-            alert("It is a 'Tie'");
+            
             key = "Match Tie!"
             result(key);
+            // alert("It is a 'Tie'");
         }
         else if(playeroption == "rock"){
             if(computerchoice == "scissor"){
@@ -82,8 +83,27 @@ function result(key){
     document.querySelector(".result").innerHTML = key;
 }
 function playerMove(argument){
-    document.querySelector(".player_move").innerHTML = argument;
+    if(argument == "rock"){
+        document.querySelector(".player_move").innerHTML = `<img src="/rock.png" alt="hi" height="240px" width="300px">` ;
+        
+    }
+    else if(argument == "paper"){
+        document.querySelector(".player_move").innerHTML = `<img src="/paper.png" alt="hi" height="240px" width="300px">` ;
+    }
+    else if(argument == "scissor"){
+        document.querySelector(".player_move").innerHTML = `<img src="/scissor.png" alt="hi" height="240px" width="300px">` ;
+    }
+    
 }
 function computerMove(argument){
-    document.querySelector(".comp_move").innerHTML = argument;
+    if(argument == "rock"){
+        document.querySelector(".comp_move").innerHTML = `<img src="/rock1.png" alt="hi" height="240px" width="300px">` ;
+        
+    }
+    else if(argument == "paper"){
+        document.querySelector(".comp_move").innerHTML = `<img src="/paper1.png" alt="hi" height="240px" width="300px">` ;
+    }
+    else if(argument == "scissor"){
+        document.querySelector(".comp_move").innerHTML = `<img src="/scissor1.png" alt="hi" height="240px" width="300px">` ;
+    }
 }
