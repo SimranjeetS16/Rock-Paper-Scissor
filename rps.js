@@ -1,6 +1,9 @@
 let rockbtn = document.querySelector(".rock");
 let paperbtn = document.querySelector(".paper");
 let scissorbtn = document.querySelector(".scissor");
+let playerhand = document.querySelector(".player-hand");
+let comphand = document.querySelector('.comp-hand');
+
 let playeroption = [rockbtn,paperbtn,scissorbtn];
 let computeroption = ["rock","paper","scissor"]
 let playercount = 0;
@@ -17,61 +20,75 @@ playeroption.forEach(option => {
         key1 = "You Win";
         key2 = "Computer Win";
 
-        if(playeroption === computerchoice){
+        setTimeout( ()=> {
+            if(playeroption === computerchoice){
             
-            key = "Match Tie!"
-            result(key);
-            // alert("It is a 'Tie'");
-        }
-        else if(playeroption == "rock"){
-            if(computerchoice == "scissor"){
-               
-                playercount++;
-                playerwin();
-                result(key1);
+                key = "Match Tie!"
+                result(key);
+                // alert("It is a 'Tie'");
             }
-            else{
-               
-                compcount++;
-                compwin();
-                result(key2);
+            else if(playeroption == "rock"){
+                if(computerchoice == "scissor"){
+                   
+                    playercount++;
+                    playerwin();
+                    result(key1);
+                }
+                else{
+                   
+                    compcount++;
+                    compwin();
+                    result(key2);
+                }
+            
             }
-        
-        }
-        else if(playeroption == "paper"){
-            if(computerchoice == "rock"){
-               
-                playercount++;
-                playerwin();
-                result(key1);
+            else if(playeroption == "paper"){
+                if(computerchoice == "rock"){
+                   
+                    playercount++;
+                    playerwin();
+                    result(key1);
+                }
+                else{
+                   
+                    compcount++;
+                    compwin();
+                    result(key2);
+                }
             }
-            else{
-               
-                compcount++;
-                compwin();
-                result(key2);
+            else if(playeroption == "scissor"){
+                if(computerchoice == "paper"){
+                   
+                    playercount++;
+                    playerwin();
+                    result(key1);
+                }
+                else{
+                   
+                    compcount++;
+                    compwin();
+                    result(key2);
+                }
             }
-        }
-        else if(playeroption == "scissor"){
-            if(computerchoice == "paper"){
-               
-                playercount++;
-                playerwin();
-                result(key1);
-            }
-            else{
-               
-                compcount++;
-                compwin();
-                result(key2);
-            }
-        }
-        computerMove(computerchoice);
-        playerMove(playeroption);
+           
+                playerhand.addEventListener('animationend', function(){
+                    this.style.animation = '';
+                    console.log(this);
+                })
+                comphand.addEventListener('animationend', function(){
+                    this.style.animation = '';
+                    console.log(this);
+                })
+                playerhand.src = `/${playeroption}.png`;
+                comphand.src = `/${computerchoice}1.png`;
+        }, 2000)
+        computerMove();
+        playerMove();
         console.log(playercount);
         console.log(compcount);
  })
 })
+
 
 function playerwin(){
     document.querySelector(".player-score").innerHTML = playercount;
@@ -82,28 +99,12 @@ function compwin(){
 function result(key){
     document.querySelector(".result").innerHTML = key;
 }
-function playerMove(argument){
-    if(argument == "rock"){
-        document.querySelector(".player_move").innerHTML = `<img src="/rock.png" alt="hi" height="240px" width="300px">` ;
-        
-    }
-    else if(argument == "paper"){
-        document.querySelector(".player_move").innerHTML = `<img src="/paper.png" alt="hi" height="240px" width="300px">` ;
-    }
-    else if(argument == "scissor"){
-        document.querySelector(".player_move").innerHTML = `<img src="/scissor.png" alt="hi" height="240px" width="300px">` ;
-    }
+function playerMove(){
+    playerhand.src = `/rock.png`;
+   playerhand.style.animation = "shakeplayer 2s ease";
     
 }
-function computerMove(argument){
-    if(argument == "rock"){
-        document.querySelector(".comp_move").innerHTML = `<img src="/rock1.png" alt="hi" height="240px" width="300px">` ;
-        
-    }
-    else if(argument == "paper"){
-        document.querySelector(".comp_move").innerHTML = `<img src="/paper1.png" alt="hi" height="240px" width="300px">` ;
-    }
-    else if(argument == "scissor"){
-        document.querySelector(".comp_move").innerHTML = `<img src="/scissor1.png" alt="hi" height="240px" width="300px">` ;
-    }
+function computerMove(){
+    comphand.src = `/rock1.png`;
+    comphand.style.animation = "shakecomp 2s ease";
 }
