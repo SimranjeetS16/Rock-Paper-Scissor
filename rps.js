@@ -23,9 +23,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
         person = "Player";
         document.querySelector('.player').innerHTML = person;
     }
-    if(localStorage.getItem(`${person}`)){
+    if(localStorage.getItem(`${person}`) != null){
         // console.log("yes m here.");
         valueGet(person);
+        playercount = document.querySelector(".player-score").innerHTML;
+        compcount =document.querySelector(".comp-score").innerHTML;
+        // console.log(playercount);
     }
 });
 
@@ -138,6 +141,9 @@ namechange.forEach(button =>{
             if(localStorage.getItem(`${newPerson}`) != null){
                 // console.log("yes m here.");
                 valueGet(newPerson);
+                playercount = document.querySelector(".player-score").innerHTML;
+                compcount =document.querySelector(".comp-score").innerHTML;
+                // console.log(playercount);
             }
             else{
                 // console.log("m here");
