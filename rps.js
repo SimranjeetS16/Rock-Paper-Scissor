@@ -5,35 +5,40 @@ let playerhand = document.querySelector(".player-hand");
 let comphand = document.querySelector('.comp-hand');
 let restart = document.querySelector('.restart');
 let playeroption = [rockbtn,paperbtn,scissorbtn];
-let computeroption = ["rock","paper","scissor"]
+let computeroption = ["rock","paper","scissor"];
+let newPlayer = document.querySelector(".newplayer");
+let namechange = document.querySelectorAll('.play');
 let playercount = 0;
 let compcount = 0;
+    key1 = "You Win";
+    key2 = "Computer Win";
+    key3 = "";    
 
-
-window.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', ()=>{
     let person = prompt("Enter ur Name", "Player");
-    if(person != null){
+    if(person != ""){
         document.querySelector('.player').innerHTML = person;
     }
-    if(localStorage.getItem("info")){
-        let storage = JSON.parse(localStorage.getItem("info"));
-        document.querySelector(".player-score").innerHTML = storage.pscore;
-        document.querySelector(".comp-score").innerHTML = storage.cscore;
+    else {
+        person = "Player";
+        document.querySelector('.player').innerHTML = person;
     }
+    if(localStorage.getItem(`${person}`)){
+        // console.log("yes m here.");
+        valueGet(person);
+    }
+});
 
-})
+
 
 playeroption.forEach(option => {
  option.addEventListener('click',function(){
         playeroption = option.getAttribute("id");
-        console.log(playeroption);
+        // console.log(playeroption);
         let choicenumber = Math.floor(Math.random()*3);
         computerchoice = computeroption[choicenumber];
-        console.log(computerchoice);
-        // playeroption = playeroption.toLowerCase();
-        key1 = "You Win";
-        key2 = "Computer Win";
-        key3 = "Result";
+        // console.log(computerchoice);
+        
         result(key3);
         setTimeout( ()=> {
             if(playeroption === computerchoice){
@@ -95,26 +100,55 @@ playeroption.forEach(option => {
                 })
                 playerhand.src = `image/${playeroption}.png`;
                 comphand.src = `image/${computerchoice}1.png`;
+                
+                valueStore();
+
         }, 2000)
         computerMove();
         playerMove();
-        local();
-        console.log(playercount);
-        console.log(compcount);
+       
+        // console.log(playercount);
+        // console.log(compcount);
  })
 })
 
-restart.addEventListener('click', function(){
-    console.log(this.innerHTML);
-    playercount = 0;
-    compcount = 0;
-    playerwin();
-    compwin();
-    
-    result(key3);
+namechange.forEach(button =>{
+    button.addEventListener('click', function(){
+        // console.log(this.innerHTML);
+
+        if(this.innerHTML == "Restart Game"){
+            // console.log(this.innerHTML);
+            playercount = 0;
+            compcount = 0;
+            playerwin();
+            compwin();
+            
+            result(key3);
+        }
+        else if(this.innerHTML == "New Player"){
+            let newPerson = prompt("Enter your Name...", "User");
+            if(newPerson != ""){
+                document.querySelector('.player').innerHTML = newPerson;
+            }
+            else{
+                // console.log("yes");
+                newPerson = "Player";
+                document.querySelector('.player').innerHTML = newPerson;
+            }
+            if(localStorage.getItem(`${newPerson}`) != null){
+                // console.log("yes m here.");
+                valueGet(newPerson);
+            }
+            else{
+                // console.log("m here");
+                playercount = 0;
+                compcount = 0;
+                playerwin();
+                compwin();
+            }
+        }
+    })
 })
-
-
 
 function playerwin(){
     document.querySelector(".player-score").innerHTML = playercount;
@@ -134,11 +168,17 @@ function computerMove(){
     comphand.src = `image/rock1.png`;
     comphand.style.animation = "shakecomp 2s ease";
 }
-function local(){
-    // let name = document.querySelector('.player').innerHTML;
+function valueStore(){
+    let name = document.querySelector('.player');
+    let playername = name.innerHTML;
     let pscore = document.querySelector(".player-score").innerHTML;
     let cscore = document.querySelector(".comp-score").innerHTML;
     let storage = {pscore:pscore,cscore:cscore};
-
-    localStorage.setItem("info",JSON.stringify(storage));
+    localStorage.setItem(`${playername}`,JSON.stringify(storage));
+}
+function valueGet(person){
+  
+    let storage = JSON.parse(localStorage.getItem(`${person}`));
+    document.querySelector(".player-score").innerHTML = storage.pscore;
+    document.querySelector(".comp-score").innerHTML = storage.cscore;
 }
