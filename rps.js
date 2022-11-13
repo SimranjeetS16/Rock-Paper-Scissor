@@ -1,5 +1,4 @@
 let rockbtn = document.querySelector(".rock");
-
 let paperbtn = document.querySelector(".paper");
 let scissorbtn = document.querySelector(".scissor");
 let playerhand = document.querySelector(".player-hand");
@@ -9,6 +8,20 @@ let playeroption = [rockbtn,paperbtn,scissorbtn];
 let computeroption = ["rock","paper","scissor"]
 let playercount = 0;
 let compcount = 0;
+
+
+window.addEventListener('DOMContentLoaded', ()=>{
+    let person = prompt("Enter ur Name", "Player");
+    if(person != null){
+        document.querySelector('.player').innerHTML = person;
+    }
+    if(localStorage.getItem("info")){
+        let storage = JSON.parse(localStorage.getItem("info"));
+        document.querySelector(".player-score").innerHTML = storage.pscore;
+        document.querySelector(".comp-score").innerHTML = storage.cscore;
+    }
+
+})
 
 playeroption.forEach(option => {
  option.addEventListener('click',function(){
@@ -20,14 +33,13 @@ playeroption.forEach(option => {
         // playeroption = playeroption.toLowerCase();
         key1 = "You Win";
         key2 = "Computer Win";
-        key3= "Result";
+        key3 = "Result";
         result(key3);
         setTimeout( ()=> {
             if(playeroption === computerchoice){
             
                 key = "Match Tie!"
                 result(key);
-                // alert("It is a 'Tie'");
             }
             else if(playeroption == "rock"){
                 if(computerchoice == "scissor"){
@@ -75,17 +87,18 @@ playeroption.forEach(option => {
            
                 playerhand.addEventListener('animationend', function(){
                     this.style.animation = '';
-                    console.log(this);
+                   
                 })
                 comphand.addEventListener('animationend', function(){
                     this.style.animation = '';
-                    console.log(this);
+                   
                 })
                 playerhand.src = `image/${playeroption}.png`;
                 comphand.src = `image/${computerchoice}1.png`;
         }, 2000)
         computerMove();
         playerMove();
+        local();
         console.log(playercount);
         console.log(compcount);
  })
@@ -100,6 +113,8 @@ restart.addEventListener('click', function(){
     
     result(key3);
 })
+
+
 
 function playerwin(){
     document.querySelector(".player-score").innerHTML = playercount;
@@ -118,4 +133,12 @@ function playerMove(){
 function computerMove(){
     comphand.src = `image/rock1.png`;
     comphand.style.animation = "shakecomp 2s ease";
+}
+function local(){
+    // let name = document.querySelector('.player').innerHTML;
+    let pscore = document.querySelector(".player-score").innerHTML;
+    let cscore = document.querySelector(".comp-score").innerHTML;
+    let storage = {pscore:pscore,cscore:cscore};
+
+    localStorage.setItem("info",JSON.stringify(storage));
 }

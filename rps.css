@@ -5,6 +5,7 @@
 }
 body{
     background:linear-gradient(to top, rgb(183, 220, 131), rgb(224, 138, 212), #c2f5ee) ;
+    /* background:linear-gradient(45deg, red 0 30%, blue  100%); */
     background-attachment: fixed;
     text-align: center;
 }
@@ -23,7 +24,11 @@ button{
     padding:12px 16px;
 }
 button:hover{
+    
     cursor:pointer;
+}
+button:active{
+    transform: scale(1.08);
 }
 .board{
     text-align: center;
@@ -46,7 +51,11 @@ button:hover{
     font-size: 22px;
     padding:2px 10px;
     border-radius: 5px;
+    position: relative;
+    width:120px;
+    overflow: hidden;
 }
+
 img{
     height:150px; 
     width:200px;
@@ -59,7 +68,7 @@ img{
 .player{
     position: absolute;
     top:26px;
-    left:-42px;
+    left:-65px;
 }
 .comp{
     position: absolute;
