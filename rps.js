@@ -95,11 +95,11 @@ playeroption.forEach(option => {
            
                 playerhand.addEventListener('animationend', function(){
                     this.style.animation = '';
-                   
+                //    console.log( this.style.animation);
                 })
                 comphand.addEventListener('animationend', function(){
                     this.style.animation = '';
-                   
+                    // console.log(this.style.animation);
                 })
                 playerhand.src = `image/${playeroption}.png`;
                 comphand.src = `image/${computerchoice}1.png`;
